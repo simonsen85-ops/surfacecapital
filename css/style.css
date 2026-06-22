@@ -382,7 +382,7 @@ body.subpage .nav {
 .principle h3 { margin: 0 0 0.4rem; font-weight: var(--w-bold); font-size: 1.24rem; line-height: 1.2; }
 .principle p { margin: 0; color: var(--sc-text); max-width: var(--measure); }
 @media (min-width: 760px){
-  .principle { display: grid; grid-template-columns: 0.82fr 1.7fr; gap: 0 3.5rem; align-items: start; }
+  .principle { display: grid; grid-template-columns: 0.82fr 1.7fr; gap: 0 3.5rem; align-items: baseline; }
   .principle h3 { margin: 0; }
 }
 

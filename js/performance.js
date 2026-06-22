@@ -3,7 +3,7 @@
    =====================================================================
    Kilde: Historisk_performance ... Sheet 1 ("10 års performance").
    Alle årlige afkast er REVIDEREDE tal i procent (verificeret mod totaler:
-   efter fees 18,48 % / før fees 21,91 % / MSCI 11,62 % / S&P500 Acc 14,26 %).
+   efter fees 18,50 % / før fees 21,91 % / MSCI 11,73 % / S&P500 Acc 14,26 %).
 
    >>> Tilføj/ret en serie nedenfor. 'on' styrer om den vises som standard.
    ===================================================================== */
@@ -11,15 +11,15 @@ const YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 
 const SERIES = [
   { key:'efter', name:'Porteføljen efter fees', color:'#FFBA00', on:true,
-    r:[39.17, 26.29, -11.00, 33.71, 13.75, 25.74, 8.00, 12.96, 22.46, 21.92] },
+    r:[39.17, 26.29, -11.00, 33.71, 13.75, 25.74, 8.00, 12.96, 22.46, 22.20] },
   { key:'foer',  name:'Porteføljen før fees',   color:'#C8952E', on:false,
     r:[55.30, 28.80, -10.10, 38.30, 14.90, 30.00, 11.70, 14.10, 23.70, 23.80] },
   { key:'msci',  name:'MSCI ACWI',              color:'#C0C0C0', on:true,
-    r:[7.90, 24.00, -9.40, 26.60, 16.30, 18.50, -18.40, 22.20, 17.50, 21.20] },
+    r:[7.90, 24.00, -9.40, 26.60, 16.30, 18.50, -18.40, 22.20, 17.50, 22.34] },
   { key:'spacc', name:'S&P 500 Acc (USD)',      color:'#7FA6BD', on:false,
     r:[11.20, 21.10, -4.90, 30.70, 17.80, 28.20, -18.50, 25.70, 24.50, 17.60] },
   { key:'speh',  name:'S&P 500 (EUR-hedged)',   color:'#9DAE8E', on:false,
-    r:[11.50, 18.90, -8.10, 27.20, 14.00, 28.40, -21.80, 23.50, 23.00, 12.80] },
+    r:[11.50, 18.90, -8.10, 27.20, 14.00, 28.40, -21.80, 23.50, 23.00, 15.17] },
 ];
 
 /* Surface Capital — fondens EGEN performance, pr. kvartal (udfyld løbende). */
