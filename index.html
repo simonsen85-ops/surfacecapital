@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surface Capital</title>
+  <meta name="description" content="Surface Capital A/S — value-investeringsfond med fokus på undervurderede aktier og asymmetrisk risiko. Globale small- og mid-cap.">
+  <meta name="theme-color" content="#19303D">
+  <meta property="og:title" content="Surface Capital">
+  <meta property="og:description" content="Surface Capital A/S — value-investeringsfond med fokus på undervurderede aktier og asymmetrisk risiko. Globale small- og mid-cap.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/hero.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home">
+  <div class="gate" id="gate" hidden>
+    <div class="gate-card" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+      <span class="kicker">Vigtig information</span>
+      <h2 id="gate-title">Investorinformation</h2>
+      <hr class="gate-rule">
+      <p id="gate-body">Dette website indeholder information om Surface Capital A/S og henvender sig
+        alene til professionelle og kvalificerede investorer. Intet på siden udgør et tilbud,
+        en opfordring eller investeringsrådgivning. Historisk afkast er ikke en pålidelig
+        indikator for fremtidigt afkast, og al investering indebærer risiko for tab.
+        Bekræft venligst, at du tilhører denne kreds for at fortsætte.</p>
+      <div class="gate-actions">
+        <button class="btn" id="gate-accept">Jeg bekræfter og fortsætter</button>
+        <button class="btn ghost" id="gate-decline">Jeg er ikke i denne kreds</button>
+      </div>
+    </div>
+  </div>
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Surface Capital, forside">Surface<small>Capital</small></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" aria-current="page">Forside</a>
+        <a href="tilgang.html">Tilgang</a>
+        <a href="performance.html">Performance</a>
+        <a href="forvalter.html">Forvalter</a>
+        <a href="vilkaar.html">Vilkår</a>
+        <a href="materialer.html">Materialer</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+  <header class="hero snap" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <h1 class="hero-mark">SURFACE CAPITAL</h1>
+      <hr class="hero-rule">
+      <p class="hero-kicker">Value investing · Globale small- &amp; mid-cap</p>
+      <p class="hero-sub">Value-investeringsfond med fokus på undervurderede aktier,
+        asymmetrisk risiko og margin of safety.</p>
+    </div>
+    <a class="scroll-cue" href="#filosofi" aria-label="Scroll ned">↓</a>
+  </header>
+
+  <main>
+    <section class="quote-screen snap" id="filosofi">
+      <div class="qs-bg" aria-hidden="true"></div>
+      <figure class="qs-inner">
+        <hr class="q-tick">
+        <blockquote>«[...] investing is the equivalent of going out and betting against the pari-mutuel system.
+          We look for a horse with one chance in two of winning and which pays you three to one.
+          You're looking for a mispriced gamble. That's what investing is. And you have to know
+          enough to know whether the gamble is mispriced.»</blockquote>
+        <figcaption>— Charlie Munger</figcaption>
+        <hr class="q-tick">
+      </figure>
+      <a class="scroll-cue" href="#om" aria-label="Scroll ned">↓</a>
+    </section>
+
+    <section class="section" id="om">
+      <div class="wrap">
+        <h2 class="section-title">Om fonden</h2>
+        <div class="intro-text">
+          <p>Surface Capital A/S er en value-investeringsfond, der investerer koncentreret i undervurderede
+            globale aktier — primært small- og mid-cap, hvor markedet er mindre efficient. Målet er at slå
+            MSCI ACWI markant over tid, med fokus på asymmetrisk risiko og en betydelig margin of safety.</p>
+          <p>Fonden henvender sig til professionelle og kvalificerede investorer.</p>
+        </div>
+        <div class="stats stat-teaser">
+          <div class="stat"><span class="stat-label">Porteføljen efter fees</span><span class="stat-num">18,48 %</span><span class="stat-sub">544 % akkumuleret</span></div>
+          <div class="stat"><span class="stat-label">Porteføljen før fees</span><span class="stat-num">21,91 %</span><span class="stat-sub">725 % akkumuleret</span></div>
+          <div class="stat"><span class="stat-label">MSCI ACWI</span><span class="stat-num">11,62 %</span><span class="stat-sub">300 % akkumuleret</span></div>
+          <div class="stat"><span class="stat-label">S&amp;P 500 Acc (USD)</span><span class="stat-num">14,26 %</span><span class="stat-sub">379 % akkumuleret</span></div>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href="performance.html">Se performance</a>
+          <a class="btn ghost" href="assets/deck/Surface_Capital_Praesentation.pdf" target="_blank" rel="noopener">Download investorpræsentation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <span class="f-brand">Surface<small>Capital</small></span>
+      <nav class="footer-nav"><a href="index.html">Forside</a> <a href="tilgang.html">Tilgang</a> <a href="performance.html">Performance</a> <a href="forvalter.html">Forvalter</a> <a href="vilkaar.html">Vilkår</a> <a href="materialer.html">Materialer</a> <a href="kontakt.html">Kontakt</a></nav>
+      <p class="disclaimer">
+        Surface Capital A/S (CVR 45991296) er en selvforvaltende alternativ investeringsfond
+        registreret hos Finanstilsynet. Materialet på dette website er alene til orientering og
+        henvender sig til professionelle og kvalificerede investorer. Det udgør ikke et tilbud,
+        en opfordring eller investeringsrådgivning. Historisk afkast er ikke en pålidelig indikator
+        for fremtidigt afkast, og al investering indebærer risiko for tab. Afkasttal er historiske,
+        indekserede og vist med tilbageregnede fees hvor angivet — jf. investorpræsentationen.
+      </p>
+      <p class="disclaimer">© <span id="yr">2026</span> Surface Capital A/S</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
