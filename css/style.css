@@ -434,3 +434,10 @@ body.subpage .nav {
 .perf-table td { color: var(--sc-text); }
 .perf-table .num { text-align: right; font-variant-numeric: tabular-nums; }
 .perf-table tr.sum td { border-top: 1px solid rgba(192,192,192,0.3); font-weight: 600; }
+
+/* ---------- home track-record teaser (attributed) ---------- */
+.teaser { margin-top: 3rem; }
+.teaser-kicker { color: var(--sc-silver); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.74rem; margin: 0 0 1.1rem; }
+.teaser-note { margin-top: 1.5rem; color: var(--sc-silver); font-size: 0.85rem; max-width: var(--measure); }
+.teaser-note a { color: var(--sc-text); border-bottom: 1px solid rgba(255,186,0,0.45); padding-bottom: 1px; }
+.teaser-note a:hover { border-color: var(--sc-gold); }
