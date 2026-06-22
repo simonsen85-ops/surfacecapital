@@ -9,7 +9,7 @@
   <meta property="og:title" content="Surface Capital">
   <meta property="og:description" content="Surface Capital A/S — value-investeringsfond med fokus på undervurderede aktier og asymmetrisk risiko. Globale small- og mid-cap.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/hero.jpg">
+  <meta property="og:image" content="assets/img/hero_desktop.jpg">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -46,9 +46,11 @@
     </div>
   </nav>
   <header class="hero snap" id="top">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <h1 class="hero-brand"><img src="assets/img/wordmark.png" alt="Surface Capital"></h1>
-    <div class="hero-reflection" aria-hidden="true"><img src="assets/img/wordmark_reflection.png" alt=""></div>
+    <h1 class="visually-hidden">Surface Capital</h1>
+    <picture class="hero-pic">
+      <source media="(max-width: 700px)" srcset="assets/img/hero_mobile.jpg">
+      <img class="hero-img" src="assets/img/hero_desktop.jpg" alt="Surface Capital" fetchpriority="high">
+    </picture>
     <a class="scroll-cue" href="#filosofi" aria-label="Scroll ned">↓</a>
   </header>
 
@@ -91,8 +93,6 @@
   </main>
   <footer class="footer">
     <div class="wrap">
-      <span class="f-brand"><img src="assets/img/logo_light.png" alt="Surface Capital"></span>
-      <nav class="footer-nav"><a href="index.html">Forside</a> <a href="tilgang.html">Tilgang</a> <a href="performance.html">Performance</a> <a href="forvalter.html">Forvalter</a> <a href="vilkaar.html">Vilkår</a> <a href="materialer.html">Materialer</a> <a href="kontakt.html">Kontakt</a></nav>
       <p class="disclaimer">
         Surface Capital A/S (CVR 45991296) er en selvforvaltende alternativ investeringsfond
         registreret hos Finanstilsynet. Materialet på dette website er alene til orientering og
