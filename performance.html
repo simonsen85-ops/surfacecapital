@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Performance · Surface Capital</title>
-  <meta name="description" content="Performance sidste 10 år: 18,48 % årligt efter fees mod MSCI ACWI 11,62 %.">
+  <meta name="description" content="Forvalterens track record 2016–2025 og Surface Capitals performance siden stiftelse.">
   <meta name="theme-color" content="#19303D">
   <meta property="og:title" content="Performance · Surface Capital">
-  <meta property="og:description" content="Performance sidste 10 år: 18,48 % årligt efter fees mod MSCI ACWI 11,62 %.">
+  <meta property="og:description" content="Forvalterens track record 2016–2025 og Surface Capitals performance siden stiftelse.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/img/hero_desktop.jpg">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -48,19 +48,31 @@
   <main>
     <section class="section" id="performance">
       <div class="wrap">
-        <h2 class="section-title">Performance · sidste 10 år</h2>
+        <h2 class="section-title">Performance</h2>
+        <p class="page-lede">Afkastet for 2016–2025 er <strong>forvalterens personlige track record</strong> — opnået ved
+          investering af egne midler forud for stiftelsen af Surface Capital A/S. Surface Capital er et nyt selskab;
+          fondens egen performance vises nederst.</p>
+
+        <h3 class="subhead">Forvalterens track record (2016–2025)</h3>
+        <p class="control-hint">Slå serier til og fra, og vælg en periode.</p>
+        <div class="series-toggles" id="seriesToggles"></div>
+        <div class="perf-controls">
+          <label>Fra<select id="fromYear" aria-label="Fra år"></select></label>
+          <label>Til<select id="toYear" aria-label="Til år"></select></label>
+        </div>
+
+        <div class="stats" id="perfStats">
         <div class="stats">
           <div class="stat"><span class="stat-label">Porteføljen efter fees</span><span class="stat-num">18,48 %</span><span class="stat-sub">544 % akkumuleret</span></div>
           <div class="stat"><span class="stat-label">Porteføljen før fees</span><span class="stat-num">21,91 %</span><span class="stat-sub">725 % akkumuleret</span></div>
           <div class="stat"><span class="stat-label">MSCI ACWI</span><span class="stat-num">11,62 %</span><span class="stat-sub">300 % akkumuleret</span></div>
           <div class="stat"><span class="stat-label">S&amp;P 500 Acc (USD)</span><span class="stat-num">14,26 %</span><span class="stat-sub">379 % akkumuleret</span></div>
         </div>
-        <div class="chart-card" style="margin-top:3rem">
-          <div class="chart-legend">
-            <span><i class="swatch gold"></i> Porteføljen efter fees</span>
-            <span><i class="swatch silver"></i> MSCI ACWI</span>
-          </div>
-          <svg class="perf-chart" viewBox="0 0 1010 520" role="img"
+        </div>
+
+        <div class="chart-card" style="margin-top:2rem">
+          <div id="perfChart">
+            <svg class="perf-chart" viewBox="0 0 1010 520" role="img"
                aria-label="Indekseret afkast 2015–2025: Porteføljen efter fees stiger til 545, MSCI ACWI til 300, begge fra basis 100.">
             <defs><linearGradient id="goldfill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#FFBA00" stop-opacity="0.18"/><stop offset="100%" stop-color="#FFBA00" stop-opacity="0"/>
@@ -85,8 +97,16 @@
             <text x="944" y="74" text-anchor="end" fill="#FFBA00" font-family="Crimson Text, serif" font-size="18" font-weight="600">544,92</text>
             <text x="944" y="270" text-anchor="end" fill="#C0C0C0" font-family="Crimson Text, serif" font-size="16" font-weight="600">300,33</text>
           </svg>
-          <p class="chart-credit">Indekseret forløb (2015 = 100). Afkast vist efter management- og performance-fees mod MSCI ACWI.
-            Periode: 1/1-2016 – 31/12-2025. Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</p>
+          </div>
+          <p class="chart-credit" id="perfCredit">Indekseret forløb (basisår 2015 = 100). Afkast efter management- og performance-fees mod MSCI ACWI. Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</p>
+        </div>
+
+        <div class="block" style="margin-top:3.6rem">
+          <h3 class="subhead">Surface Capital A/S (2026–)</h3>
+          <p class="page-lede">Surface Capital A/S er stiftet for nylig; fondens egen track record er derfor kort.
+            Her vises fondens faktiske afkast pr. kvartal siden start.</p>
+          <div id="surfaceWrap"></div>
+          <p class="terms-meta">Opdateres kvartalsvis.</p>
         </div>
       </div>
     </section>
@@ -105,5 +125,6 @@
     </div>
   </footer>
   <script src="js/main.js"></script>
+  <script src="js/performance.js"></script>
 </body>
 </html>

@@ -35,6 +35,10 @@
   --maxw: 1080px;
   --pad: clamp(1.25rem, 5vw, 4rem);
 
+  /* Reading width for running prose (paragraphs, lists). Higher = wider lines.
+     ~66ch is the classic ideal; raise toward 90ch or set to none for full width. */
+  --measure: 78ch;
+
 }
 
 /* ---------- reset / base ---------- */
@@ -84,7 +88,7 @@ em, .credit, .caption { font-style: italic; }
   padding-bottom: 0.5rem;
   border-bottom: 1.5px solid var(--sc-gold);
 }
-.lede { max-width: 64ch; }
+.lede { max-width: var(--measure); }
 .lede p { margin: 0 0 1.05em; }
 .lede p:last-child { margin-bottom: 0; }
 
@@ -185,7 +189,7 @@ em, .credit, .caption { font-style: italic; }
 .approach p { margin: 0; color: var(--sc-text); }
 
 /* tick-list: short HORIZONTAL gold ticks between items (gold is never vertical) */
-.tick-list { max-width: 64ch; }
+.tick-list { max-width: var(--measure); }
 .tick-list > div + div { margin-top: 1.45rem; }
 .tick-list > div + div::before {
   content: "";
@@ -258,7 +262,7 @@ em, .credit, .caption { font-style: italic; }
 .alignment { margin-top: 2.4rem; color: var(--sc-silver); font-style: italic; }
 
 /* ---------- documents ---------- */
-.docs { display: grid; gap: 1.1rem; max-width: 64ch; }
+.docs { display: grid; gap: 1.1rem; max-width: var(--measure); }
 .doc {
   display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
   padding: 1.1rem 0; border-bottom: var(--rule) solid rgba(255,186,0,0.22);
@@ -362,8 +366,8 @@ body.subpage .nav {
 .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.4rem; }
 
 /* page / intro copy */
-.page-lede { max-width: 62ch; margin: 0 0 1.4rem; color: var(--sc-text); }
-.intro-text { max-width: 62ch; }
+.page-lede { max-width: var(--measure); margin: 0 0 1.4rem; color: var(--sc-text); }
+.intro-text { max-width: var(--measure); }
 .intro-text p { margin: 0 0 1.05em; }
 .intro-text p:last-child { margin-bottom: 0; }
 .stat-teaser { margin-top: 3rem; }
@@ -376,7 +380,7 @@ body.subpage .nav {
 }
 .principle:last-child { border-bottom: var(--rule) solid rgba(255,186,0,0.22); }
 .principle h3 { margin: 0 0 0.4rem; font-weight: var(--w-bold); font-size: 1.24rem; line-height: 1.2; }
-.principle p { margin: 0; color: var(--sc-text); max-width: 56ch; }
+.principle p { margin: 0; color: var(--sc-text); max-width: var(--measure); }
 @media (min-width: 760px){
   .principle { display: grid; grid-template-columns: 0.82fr 1.7fr; gap: 0 3.5rem; align-items: start; }
   .principle h3 { margin: 0; }
@@ -390,3 +394,43 @@ body.subpage .nav {
 .footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
 .footer-nav a { color: var(--sc-silver); font-size: 0.92rem; border-bottom: 1px solid transparent; padding-bottom: 1px; }
 .footer-nav a:hover { color: var(--sc-text); border-bottom-color: var(--sc-gold); }
+
+/* ---------- interactive performance controls ---------- */
+.perf-controls { display: flex; flex-wrap: wrap; gap: 1.4rem; align-items: flex-end; margin: 0.4rem 0 1.9rem; }
+.perf-controls label {
+  display: inline-flex; flex-direction: column; gap: 0.45rem;
+  color: var(--sc-silver); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem;
+}
+.perf-controls select {
+  background: #20404D; color: var(--sc-text);
+  border: 1px solid #7A6422; border-radius: 2px;
+  font-family: var(--sc-serif); font-size: 1.05rem;
+  padding: 0.45rem 2.1rem 0.45rem 0.85rem;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C0C0C0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.75rem center;
+  cursor: pointer;
+}
+.perf-controls select:focus-visible { outline: 2px solid var(--sc-gold); outline-offset: 1px; }
+
+/* ---------- series toggles + quarterly table ---------- */
+.control-hint { color: var(--sc-silver); font-size: 0.82rem; letter-spacing: 0.02em; margin: 0 0 0.9rem; }
+.series-toggles { display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 0 0 1.6rem; }
+.series-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.42rem 0.9rem; border: 1px solid rgba(192,192,192,0.28); border-radius: 999px;
+  background: transparent; color: var(--sc-text); font-family: var(--sc-serif); font-size: 0.92rem;
+  cursor: pointer; transition: opacity .15s ease, border-color .15s ease;
+}
+.series-chip .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.series-chip:hover { border-color: rgba(255,186,0,0.55); }
+.series-chip[aria-pressed="false"] { opacity: 0.4; }
+.series-chip:focus-visible { outline: 2px solid var(--sc-gold); outline-offset: 2px; }
+.stat-label .sdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 0.45rem; }
+
+.perf-table { width: 100%; max-width: 560px; border-collapse: collapse; margin-top: 1.3rem; font-size: 1.02rem; }
+.perf-table th, .perf-table td { padding: 0.68rem 0.6rem; border-bottom: 1px solid rgba(255,186,0,0.18); }
+.perf-table th { color: var(--sc-silver); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.7rem; font-weight: 400; text-align: left; }
+.perf-table td { color: var(--sc-text); }
+.perf-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.perf-table tr.sum td { border-top: 1px solid rgba(192,192,192,0.3); font-weight: 600; }
