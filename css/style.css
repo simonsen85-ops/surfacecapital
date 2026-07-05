@@ -260,6 +260,10 @@ em, .credit, .caption { font-style: italic; }
 .relevance .r h4 { font-weight: var(--w-bold); font-size: 1.05rem; margin: 0 0 0.3rem; }
 .relevance .r p { margin: 0; color: var(--sc-text); font-size: 0.96rem; }
 .alignment { margin-top: 2.4rem; color: var(--sc-silver); font-style: italic; }
+.align-text { max-width: var(--measure); font-size: 1.06rem; line-height: 1.75; }
+.st-gap { margin-top: 4.2rem; }
+#partnerskab { scroll-margin-top: 90px; }
+.teaser { margin-top: 1.4rem; }
 
 /* ---------- documents ---------- */
 .docs { display: grid; gap: 1.1rem; max-width: var(--measure); }
