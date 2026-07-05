@@ -3,7 +3,7 @@
    =====================================================================
    Kilde: Historisk_performance ... Sheet 1 ("10 års performance").
    Alle årlige afkast er REVIDEREDE tal i procent (verificeret mod totaler:
-   efter fees 18,50 % / før fees 21,91 % / MSCI 11,73 % / S&P500 Acc 14,26 %).
+   efter fees 17,90 % / før fees 21,91 % / MSCI 11,73 % / S&P500 Acc 14,26 %).
 
    >>> Tilføj/ret en serie nedenfor. 'on' styrer om den vises som standard.
    ===================================================================== */
@@ -11,7 +11,7 @@ const YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 
 const SERIES = [
   { key:'efter', name:'Porteføljen efter fees', color:'#FFBA00', on:true,
-    r:[39.17, 26.29, -11.00, 33.71, 13.75, 25.74, 8.00, 12.96, 22.46, 22.20] },
+    r:[39.17, 26.29, -11.00, 33.71, 13.75, 25.74, 3.93, 12.96, 20.94, 22.20] },
   { key:'foer',  name:'Porteføljen før fees',   color:'#C8952E', on:false,
     r:[55.30, 28.80, -10.10, 38.30, 14.90, 30.00, 11.70, 14.10, 23.70, 23.80] },
   { key:'msci',  name:'MSCI ACWI',              color:'#C0C0C0', on:true,
