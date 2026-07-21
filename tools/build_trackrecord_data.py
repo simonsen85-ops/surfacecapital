@@ -130,8 +130,10 @@ start = min(min(cash_ev), min(sec_ev))
 cash = 0.0; hold = defaultdict(float); carry = defaultdict(float)
 twr = 1.0; prev = None; d = start
 index_series = []          # (date, index)
+nav_series = []            # (date, nav)
 peak_w = defaultdict(float)
 val_at_end = {}
+year_snap = {}             # year -> {sid: value at Dec 31}
 while d <= END:
     cash += cash_ev.get(d, 0.0)
     for sid, dsh, da, _ in sec_ev.get(d, []):
@@ -152,7 +154,9 @@ while d <= END:
             w = pv / v
             if w > peak_w[sid]: peak_w[sid] = w
     index_series.append((d, twr * 100.0))
+    nav_series.append((d, v))
     prev = v
+    if d.month == 12 and d.day == 31: year_snap[d.year] = dict(vals)
     if d == END: val_at_end = dict(vals)
     d += timedelta(days=1)
 
@@ -249,12 +253,58 @@ for sid in sids_traded:
 for p in positions:
     p["gainShare"] = round(p.pop("_gain") / total_gain * 100, 1) if total_gain else 0.0
 
+# ---- per-position yearly P&L (fractions of total gain) ----------------
+sid_by_name = {}
+flows_y = defaultdict(lambda: defaultdict(float))   # sid -> year -> net invested (buys-sells)
+divs_y  = defaultdict(lambda: defaultdict(float))   # sid -> year -> gross dividends
+for dd, l in sec_ev.items():
+    for sid, dsh, da, _ in l:
+        flows_y[sid][dd.year] += da
+for sid, lst in div_ev.items():
+    for dd, g, _, _ in lst:
+        if dd <= END: divs_y[sid][dd.year] += g
+years_all = list(range(start.year, END.year + 1))
+pnlY_map = {}
+for sid in sids_traded:
+    out = {}
+    for y in years_all:
+        v0 = year_snap.get(y - 1, {}).get(sid, 0.0)
+        v1 = year_snap.get(y, {}).get(sid, 0.0)
+        pnl = v1 - v0 - flows_y[sid].get(y, 0.0) + divs_y[sid].get(y, 0.0)
+        if abs(pnl) > 0.5: out[str(y)] = round(pnl / total_gain * 1000, 2)   # per-mille of total gain
+    pnlY_map[sid] = out
+
+# attach to positions (same order as sids_traded)
+for p, sid in zip(positions, sids_traded):
+    p["pnlY"] = pnlY_map[sid]
+
+# ---- per-window IRR and max drawdown (engine daily series) ------------
+nav_by_date = dict(nav_series)
+def window_stats(y0, y1):
+    a, b = max(date(y0, 1, 1), start), date(y1, 12, 31)
+    v0 = nav_by_date.get(a - timedelta(days=1), 0.0)
+    cf = [(a - timedelta(days=1), -v0)] if v0 > 0 else []
+    cf += [(dd, -f) for dd, f in sorted(flow_ev.items()) if a <= dd <= b and f]
+    cf.append((b, nav_by_date[b]))
+    r = xirr(sorted(cf))
+    seg = [ix for dd, ix in index_series if a <= dd <= b]
+    peak = seg[0]; mdd = 0.0
+    for x in seg:
+        peak = max(peak, x); mdd = min(mdd, x / peak - 1)
+    return (round(r * 100, 1) if r is not None else None, round(-mdd * 100, 1))
+windows = {}
+for y0 in range(start.year, END.year + 1):
+    for y1 in range(y0, END.year + 1):
+        irr, mdd = window_stats(y0, y1)
+        windows[f"{y0}-{y1}"] = [irr, mdd]
+
 payload = {
     "official": OFFICIAL,
     "asOf": END.isoformat(),
     "inception": start.isoformat(),
     "index": weekly,
     "positions": positions,
+    "windows": windows,
     "absolute": SHOW_ABSOLUTE,
 }
 with open(OUT, "w", encoding="utf-8") as f:

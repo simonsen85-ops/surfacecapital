@@ -56,6 +56,12 @@
           samt hver enkelt position: hvornår der blev købt og solgt, til hvilke kurser, hvilke udbytter
           positionen kastede af sig, og hvor meget den bidrog til det samlede resultat.</p>
 
+        <p class="control-hint">Vælg en periode — nøgletal, graf, årstabel og positionernes bidrag følger valget.</p>
+        <div class="perf-controls">
+          <label>Fra<select id="trFrom" aria-label="Fra år"></select></label>
+          <label>Til<select id="trTo" aria-label="Til år"></select></label>
+        </div>
+
         <div class="stats" id="trStats"></div>
 
         <div class="chart-card" style="margin-top:2rem">
@@ -105,7 +111,11 @@
             Portfolio Performance for perioden 1. januar 2016 – 31. december 2025. Positionsafkast
             (IRR) er pengevægtede og medregner udbytter før udbytteskat. »Bidrag til resultat« angiver
             positionens andel af periodens samlede gevinst. Åbne positioner er værdiansat pr.
-            31. december 2025. Tal på denne side er afrundede; mindre afvigelser i sidste decimal kan
+            31. december 2025. Ved valg af en delperiode kædes akkumuleret og årligt afkast af de
+            officielle årsafkast, mens IRR og drawdown er beregnet for den valgte periode med
+            porteføljens værdi ved periodens start som indskud; »Bidrag« angiver i så fald
+            positionens andel af netop denne periodes resultat, mens nøgletallene i den udfoldede
+            visning fortsat dækker hele ejerperioden. Tal på denne side er afrundede; mindre afvigelser i sidste decimal kan
             forekomme mellem grafik og nøgletal som følge af valutakurskilder.</p>
         </div>
       </div>
