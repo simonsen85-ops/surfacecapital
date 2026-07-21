@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track record · Surface Capital</title>
+  <meta name="description" content="Forvalterens fulde track record 2016–2025: alle positioner, handler og udbytter bag afkastet.">
+  <meta name="theme-color" content="#19303D">
+  <meta property="og:title" content="Track record · Surface Capital">
+  <meta property="og:description" content="Forvalterens fulde track record 2016–2025: alle positioner, handler og udbytter bag afkastet.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/hero_desktop.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="subpage">
+  <div class="gate" id="gate" hidden>
+    <div class="gate-card" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+      <span class="kicker">Vigtig information</span>
+      <h2 id="gate-title">Investorinformation</h2>
+      <hr class="gate-rule">
+      <p id="gate-body">Dette website indeholder information om Surface Capital A/S og henvender sig
+        alene til professionelle og kvalificerede investorer. Intet på siden udgør et tilbud,
+        en opfordring eller investeringsrådgivning. Historisk afkast er ikke en pålidelig
+        indikator for fremtidigt afkast, og al investering indebærer risiko for tab.
+        Bekræft venligst, at du tilhører denne kreds for at fortsætte.</p>
+      <div class="gate-actions">
+        <button class="btn" id="gate-accept">Jeg bekræfter og fortsætter</button>
+        <button class="btn ghost" id="gate-decline">Jeg er ikke i denne kreds</button>
+      </div>
+    </div>
+  </div>
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Surface Capital, forside"><img src="assets/img/logo_light.png" alt="Surface Capital"></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Forside</a>
+        <a href="partnerskab.html">Partnerskab</a>
+        <a href="tilgang.html">Tilgang</a>
+        <a href="performance.html" aria-current="page">Performance</a>
+        <a href="forvalter.html">Forvalter</a>
+        <a href="vilkaar.html">Vilkår</a>
+        <a href="materialer.html">Materialer</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="section" id="trackrecord">
+      <div class="wrap">
+        <span class="kicker">Performance · dybdegående</span>
+        <h2 class="section-title">Handlerne bag afkastet</h2>
+        <p class="page-lede">Forvalterens personlige track record 2016–2025, rekonstrueret handel for handel
+          fra de originale fondsnotaer. Nedenfor vises det indekserede forløb af den samlede portefølje
+          samt hver enkelt position: hvornår der blev købt og solgt, til hvilke kurser, hvilke udbytter
+          positionen kastede af sig, og hvor meget den bidrog til det samlede resultat.</p>
+
+        <div class="stats" id="trStats"></div>
+
+        <div class="chart-card" style="margin-top:2rem">
+          <div id="trChart"></div>
+          <p class="chart-credit">Indekseret forløb af forvalterens portefølje (basis 20. maj 2016 = 100),
+            beregnet dagligt som tidsvægtet afkast (TWR) før skat og efter handelsomkostninger.
+            Indskud og udtræk over perioden er performanceneutrale og påvirker ikke kurven.
+            Historisk afkast er ikke en pålidelig indikator for fremtidigt afkast.</p>
+        </div>
+
+        <div class="block" style="margin-top:3rem">
+          <h3 class="subhead">Årlige afkast mod verdensindekset</h3>
+          <table class="perf-table" id="trYearTable" aria-label="Årlige afkast, portefølje mod MSCI ACWI"></table>
+          <p class="terms-meta">Porteføljeafkast er tidsvægtede årsafkast før skat. Benchmark: iShares MSCI ACWI.</p>
+        </div>
+
+        <div class="block" style="margin-top:3.6rem">
+          <h3 class="subhead">Alle positioner</h3>
+          <p class="control-hint">Klik på en position for at folde detaljerne ud: kursforløb med købs- og
+            salgstidspunkter, udbytter og nøgletal.</p>
+          <div class="tr-controls">
+            <div class="tr-filters" role="group" aria-label="Filtrér positioner">
+              <button class="tr-pill is-active" data-filter="all">Alle</button>
+              <button class="tr-pill" data-filter="open">Åbne</button>
+              <button class="tr-pill" data-filter="closed">Lukkede</button>
+            </div>
+            <label class="tr-sort">Sortér efter
+              <select id="trSort" aria-label="Sortér positioner">
+                <option value="gainShare">Bidrag til resultat</option>
+                <option value="xirr">Årligt afkast (IRR)</option>
+                <option value="first">Første køb</option>
+                <option value="years">Ejertid</option>
+                <option value="peakW">Største vægt</option>
+                <option value="name">Navn</option>
+              </select>
+            </label>
+          </div>
+          <div id="trList" class="tr-list"></div>
+        </div>
+
+        <div class="block" style="margin-top:3.4rem">
+          <h3 class="subhead">Metode</h3>
+          <p>Alle handler er indtastet fra de originale fonds­notaer med faktisk handelsdag og faktisk
+            anskaffelses- eller salgskurs inklusive kurtage. Porteføljens forløb er beregnet som ægte
+            tidsvægtet afkast (TWR) med daglig værdiansættelse i DKK (ECB-referencekurser), hvor
+            kapitalindskud og -udtræk er performanceneutrale. Nøgletallene øverst er opgjort i
+            Portfolio Performance for perioden 1. januar 2016 – 31. december 2025. Positionsafkast
+            (IRR) er pengevægtede og medregner udbytter før udbytteskat. »Bidrag til resultat« angiver
+            positionens andel af periodens samlede gevinst. Åbne positioner er værdiansat pr.
+            31. december 2025. Tal på denne side er afrundede; mindre afvigelser i sidste decimal kan
+            forekomme mellem grafik og nøgletal som følge af valutakurskilder.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <p class="disclaimer">
+        Surface Capital A/S (CVR 45991296) er en selvforvaltende alternativ investeringsfond
+        registreret hos Finanstilsynet. Materialet på dette website er alene til orientering og
+        henvender sig til professionelle og kvalificerede investorer. Det udgør ikke et tilbud,
+        en opfordring eller investeringsrådgivning. Historisk afkast er ikke en pålidelig indikator
+        for fremtidigt afkast, og al investering indebærer risiko for tab. Track recorden på denne
+        side er forvalterens personlige afkast opnået med egne midler forud for stiftelsen af
+        Surface Capital A/S.
+      </p>
+      <p class="disclaimer">© <span id="yr">2026</span> Surface Capital A/S</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="js/trackrecord-data.js"></script>
+  <script src="js/trackrecord.js"></script>
+</body>
+</html>
