@@ -25,8 +25,8 @@ const SERIES = [
 /* Surface Capital — fondens EGEN performance, pr. kvartal (udfyld løbende). */
 const SURFACE = {
   quarters: [
-    { label: 'Q1 2026', port: -5.23, bench: -3.21 },
-    // { label: 'Q2 2026', port: null, bench: null },
+    { label: 'Q1 2026', gross: -5.23, port: -5.48, bench: -3.21 },
+    { label: 'Q2 2026', gross: 8.61, port: 8.36, bench: 14.93 },
   ]
 };
 /* ===================================================================== */
@@ -136,12 +136,12 @@ const SURFACE = {
     const q = SURFACE.quarters.filter(x => x.port !== null && x.port !== undefined);
     const cell = (x) => x === null || x === undefined ? '\u2014' : signed(x, 2) + ' %';
     if (!q.length) { wrap.innerHTML = '<p class="terms-meta">ÅTD-tal indsættes her.</p>'; return; }
-    let rows = q.map(x => `<tr><td>${x.label}</td><td class="num">${cell(x.port)}</td><td class="num">${cell(x.bench)}</td></tr>`).join('');
+    let rows = q.map(x => `<tr><td>${x.label}</td><td class="num">${cell(x.gross)}</td><td class="num">${cell(x.port)}</td><td class="num">${cell(x.bench)}</td></tr>`).join('');
     if (q.length > 1) {
       const prod = (k) => q.reduce((m, x) => m * (1 + x[k] / 100), 1);
-      rows += `<tr class="sum"><td>Siden start</td><td class="num">${signed((prod('port') - 1) * 100, 2)} %</td><td class="num">${signed((prod('bench') - 1) * 100, 2)} %</td></tr>`;
+      rows += `<tr class="sum"><td>Siden start</td><td class="num">${signed((prod('gross') - 1) * 100, 2)} %</td><td class="num">${signed((prod('port') - 1) * 100, 2)} %</td><td class="num">${signed((prod('bench') - 1) * 100, 2)} %</td></tr>`;
     }
-    wrap.innerHTML = `<table class="perf-table"><thead><tr><th>Periode</th><th class="num">Surface Capital</th><th class="num">MSCI ACWI</th></tr></thead><tbody>${rows}</tbody></table>`;
+    wrap.innerHTML = `<table class="perf-table"><thead><tr><th>Periode</th><th class="num">Før fees</th><th class="num">Efter fees</th><th class="num">MSCI ACWI</th></tr></thead><tbody>${rows}</tbody></table>`;
   }
 
   function fill(sel, vals, selected) {
