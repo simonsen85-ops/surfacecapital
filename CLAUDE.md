@@ -81,9 +81,8 @@ source is missing, stop and ask him for it.
 ## Open items (as of 16 Nov 2026)
 1. `assets/deck/Surface_Capital_Investorpraesentation.pdf` = PDF export of the Google Slides deck "Surface Capital 10 år – v2"
    (the master). Re-export via the Drive connector (export as application/pdf) after each deck change. Keep the file name.
-2. Remove unused files (nothing references them): `assets/deck/Surface_Capital_Praesentation.pdf`
-   (old version with an outlook email and 3,0 mio, still publicly downloadable), `assets/img/hero.jpg`, `wordmark.png`,
-   `wordmark_reflection.png`. Update `README.md`, which is out of date (it describes 7 pages and old files).
+2. ~~Remove unused files~~ Done 16 Nov 2026: the old `Surface_Capital_Praesentation.pdf`, `hero.jpg`, `wordmark.png` and
+   `wordmark_reflection.png` are removed, and `README.md` is rewritten.
 3. ~~Restate ALL benchmarks in DKK~~ **Done on the site 16 Nov 2026** (see Data above). Remaining: Rasmus checks the
    DKK workbook in Excel and updates the deck per `docs/deck-updates.md`. Original plan, for reference:
    `docs/RUNBOOK-dkk-benchmark.md`. Tools: `tools/bilag1.py` (fee waterfall +
