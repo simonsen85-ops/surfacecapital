@@ -116,7 +116,7 @@
     });
     rows += `<tr class="sum"><td>Akkumuleret</td><td class="num">${signed((cumP - 1) * 100, 0)} %</td><td class="num">${signed((cumB - 1) * 100, 0)} %</td><td class="num"></td></tr>`;
     $('trYearTable').innerHTML =
-      `<thead><tr><th>År</th><th class="num">Portefølje</th><th class="num">MSCI ACWI</th><th class="num">Merafkast</th></tr></thead><tbody>${rows}</tbody>`;
+      `<thead><tr><th>År</th><th class="num">Portefølje</th><th class="num">MSCI ACWI (DKK)</th><th class="num">Merafkast</th></tr></thead><tbody>${rows}</tbody>`;
   }
 
   /* ---------- positionsliste ---------- */

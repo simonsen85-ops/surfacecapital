@@ -3,15 +3,18 @@
 # acwi_usd: MSCI ACWI Net Total Return, USD (index 892400, MSCI factsheet).
 # sp500_usd: S&P 500 Net Total Return, USD.
 # sp500_eurh: S&P 500 EUR Hedged index (BlackRock, benchmark-række for IE00B3ZW0K18).
-# acwi_dkk / sp500_dkk: TOMME indtil de er beregnet efter docs/RUNBOOK-dkk-benchmark.md.
+# acwi_dkk: MSCI ACWI Net Total Return, DKK (892400, MSCI end-of-day index data, niveauer 31/12, hentet 16-11-2026).
+#   Kontrol: EUR-niveau x ECB EUR/DKK og acwi_usd x USD/DKK, begge inden for 0,15 pp hvert år. tools/benchmarks_dkk.py
+# sp500_dkk: (1 + sp500_usd) x USDDKK_slut/USDDKK_start - 1. USDDKK = ECB EUR/DKK / EUR/USD kl. 16 London (udledt af MSCI USD/EUR-niveauer).
+#   Kontrol: YCharts ^SPXNTREUR x ECB EUR/DKK 2019-2025, inden for 0,3 pp.
 year,portfolio_gross,acwi_usd,sp500_usd,sp500_eurh,acwi_dkk,sp500_dkk
-2016,55.3,7.9,11.2,9.6,,
-2017,28.8,24.0,21.1,18.7,,
-2018,-10.1,-9.4,-4.9,-7.8,,
-2019,38.3,26.6,30.7,26.8,,
-2020,14.9,16.3,17.8,15.1,,
-2021,30.0,18.5,28.2,27.0,,
-2022,11.7,-18.4,-18.5,-21.0,,
-2023,14.1,22.2,25.7,22.2,,
-2024,23.7,17.5,24.5,22.5,,
-2025,24.8,22.34,17.6,15.1,,
+2016,55.3,7.9,11.2,9.6,10.69,14.09
+2017,28.8,24.0,21.1,18.7,9.04,6.52
+2018,-10.1,-9.4,-4.9,-7.8,-4.63,0.20
+2019,38.3,26.6,30.7,26.8,29.10,33.18
+2020,14.9,16.3,17.8,15.1,6.24,7.63
+2021,30.0,18.5,28.2,27.0,27.44,37.85
+2022,11.7,-18.4,-18.5,-21.0,-13.03,-13.16
+2023,14.1,22.2,25.7,22.2,18.35,21.71
+2024,23.7,17.5,24.5,22.5,25.38,32.90
+2025,24.8,22.34,17.6,15.1,8.03,3.84

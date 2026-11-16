@@ -1,0 +1,7 @@
+# MSCI ACWI Net Total Return (892400), kvartalsafkast 2026 i %. Kilde: MSCI end-of-day index data, hentet 16-11-2026.
+# acwi_usd til sammenligning med de tidligere SURFACE.quarters[].bench. tools/benchmarks_dkk.py
+quarter,start,end,acwi_usd,acwi_dkk
+Q1 2026,2025-12-31,2026-03-31,-3.20,-1.29
+Q2 2026,2026-03-31,2026-06-30,14.93,15.86
+Q3 2026,2026-06-30,2026-09-30,1.60,2.28
+since_start,2025-12-31,2026-09-30,13.03,16.98

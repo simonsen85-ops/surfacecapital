@@ -2,14 +2,16 @@
    Surface Capital — interaktiv performance
    =====================================================================
    Kilde: Historisk_performance ... Sheet 1 ("10 års performance").
-   Alle årlige afkast er REVIDEREDE tal i procent (verificeret mod totaler:
-   efter fees 18,84 % / før fees 22,01 % / MSCI 11,73 % / S&P500 Acc 14,26 %).
-   Før fees 2025 rettet fra 23,80 til 24,80 (okt. 2026) — verificeret mod Portfolio Performance-XML.
-   Efter fees omregnet okt. 2026 efter vilkårene: 1 % management fee, derefter 20 % af merafkastet
-   over MSCI ACWI efter management fee (af primo-kapital), kun i år med positivt afkast. Kilde: IRR-workbook.
-   MSCI ACWI = Net Total Return i USD (index 892400, MSCI factsheet) — samme serie på performance- og trackrecord-siden.
-   S&P 500 (EUR-hedged) = S&P 500 EUR Hedged-indekset, kalenderårsafkast fra BlackRocks produktside for
-   iShares S&P 500 EUR Hedged UCITS ETF (IE00B3ZW0K18), benchmark-rækken (nov. 2026).
+   Alle årlige afkast er tal i procent. Alle serier og kilder: data/track_record_2016_2025.csv.
+   Benchmark = MSCI ACWI i DKK (nov. 2026), samme valuta som porteføljen. USD vises til sammenligning.
+   Totaler 2016–2025: efter fees 18,60 % / før fees 22,01 % / MSCI ACWI DKK 10,86 % / USD 11,73 %
+   / S&P 500 DKK 13,38 % / USD 14,26 %.
+   Før fees: Portfolio Performance (TTWROR, DKK). 2025 rettet fra 23,80 til 24,80 (okt. 2026).
+   Efter fees omregnet nov. 2026 efter vilkårene: 1 % management fee, derefter 20 % af merafkastet
+   over MSCI ACWI (DKK) efter management fee (af primo-kapital), kun i år med positivt afkast.
+   Kilde: tools/bilag1.py --bench acwi_dkk (kolonnen 'ra'); regressionstestet mod IRR-workbooken.
+   MSCI ACWI = Net Total Return (index 892400), DKK og USD direkte fra MSCI. Samme serie på trackrecord-siden.
+   S&P 500 = Net Total Return, USD; DKK omregnet (tools/benchmarks_dkk.py). EUR-hedged-serien er fjernet (nov. 2026).
 
    >>> Tilføj/ret en serie nedenfor. 'on' styrer om den vises som standard.
    ===================================================================== */
@@ -17,34 +19,37 @@ const YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
 
 const SERIES = [
   { key:'efter', name:'Porteføljen efter fees', color:'#FFBA00', on:true,
-    r:[44.58, 26.81, -11.00, 34.85, 13.75, 26.66, 4.79, 12.96, 21.47, 23.31] },
+    r:[45.14, 23.82, -11.00, 35.35, 12.25, 28.45, 5.86, 12.96, 22.46, 20.45] },
   { key:'foer',  name:'Porteføljen før fees',   color:'#C8952E', on:false,
     r:[55.30, 28.80, -10.10, 38.30, 14.90, 30.00, 11.70, 14.10, 23.70, 24.80] },
-  { key:'msci',  name:'MSCI ACWI',              color:'#C0C0C0', on:true,
+  { key:'msci',  name:'MSCI ACWI (DKK)',        color:'#C0C0C0', on:true,
+    r:[10.69, 9.04, -4.63, 29.10, 6.24, 27.44, -13.03, 18.35, 25.38, 8.03] },
+  { key:'msciusd', name:'MSCI ACWI (USD)',      color:'#8A9AA3', on:false,
     r:[7.90, 24.00, -9.40, 26.60, 16.30, 18.50, -18.40, 22.20, 17.50, 22.34] },
-  { key:'spacc', name:'S&P 500 Acc (USD)',      color:'#7FA6BD', on:false,
+  { key:'spacc', name:'S&P 500 (DKK)',          color:'#7FA6BD', on:false,
+    r:[14.09, 6.52, 0.20, 33.18, 7.63, 37.85, -13.16, 21.71, 32.90, 3.84] },
+  { key:'spusd', name:'S&P 500 (USD)',          color:'#9DAE8E', on:false,
     r:[11.20, 21.10, -4.90, 30.70, 17.80, 28.20, -18.50, 25.70, 24.50, 17.60] },
-  { key:'speh',  name:'S&P 500 (EUR-hedged)',   color:'#9DAE8E', on:false,
-    r:[9.60, 18.70, -7.80, 26.80, 15.10, 27.00, -21.00, 22.20, 22.50, 15.10] },
 ];
 
 /* Surface Capital — fondens EGEN performance, pr. kvartal (udfyld løbende).
-   Samme valuta som 2016–2025-serierne ovenfor (MSCI ACWI = samme kilde som tidligere),
-   så grafen kan kæde forvalterens historik og fondens afkast sammen.
+   Samme valuta som 2016–2025-serierne ovenfor, så grafen kan kæde forvalterens historik og
+   fondens afkast sammen. bench = MSCI ACWI (DKK), benchUsd = MSCI ACWI (USD); kilde:
+   data/acwi_quarters_2026.csv (MSCI-niveauer, tools/benchmarks_dkk.py).
 
    sinceStart: officielle "siden start"-tal fra NAV-workbooken (som i investorbrevet).
    Bruges kun når asOf matcher seneste kvartal; ellers kædes kvartalerne automatisk. */
 const SURFACE = {
   quarters: [
-    { label: 'Q1 2026', gross: -5.23, port: -5.48, bench: -3.21 },
-    { label: 'Q2 2026', gross: 8.61, port: 8.36, bench: 14.93 },
-    { label: 'Q3 2026', gross: 1.69, port: 1.44, bench: 1.60 },
+    { label: 'Q1 2026', gross: -5.23, port: -5.48, bench: -1.29, benchUsd: -3.21 },
+    { label: 'Q2 2026', gross: 8.61, port: 8.36, bench: 15.86, benchUsd: 14.93 },
+    { label: 'Q3 2026', gross: 1.69, port: 1.44, bench: 2.28, benchUsd: 1.60 },
   ],
-  sinceStart: { asOf: 'Q3 2026', gross: 4.68, port: 3.90, bench: 13.03 },
+  sinceStart: { asOf: 'Q3 2026', gross: 4.68, port: 3.90, bench: 16.98, benchUsd: 13.03 },
 };
 const FUND_YEAR = 2026;
 /* Hvilke historiske serier fortsætter med fondens tal fra 2026 (serie-key -> felt i quarters). */
-const FUND_MAP = { efter: 'port', foer: 'gross', msci: 'bench' };
+const FUND_MAP = { efter: 'port', foer: 'gross', msci: 'bench', msciusd: 'benchUsd' };
 /* ===================================================================== */
 
 (function () {
@@ -107,12 +112,12 @@ const FUND_MAP = { efter: 'port', foer: 'gross', msci: 'bench' };
       const d = period(e, from, to).ann - period(m, from, to).ann;
       html += `<div class="stat"><span class="stat-label">Merafkast p.a.</span>` +
               `<span class="stat-num">${signed(d, 2)} %-p</span>` +
-              `<span class="stat-sub">efter fees vs. MSCI ACWI</span></div>`;
+              `<span class="stat-sub">efter fees vs. MSCI ACWI (DKK)</span></div>`;
     }
     if (to === FUND_YEAR && from <= LAST_FULL && HAS_FUND) {
       html += `<div class="stat"><span class="stat-label">Heraf Surface Capital A/S</span>` +
               `<span class="stat-num">${signed(fundSince('port'), 2)} %</span>` +
-              `<span class="stat-sub">${FUND_YEAR} t.o.m. ${lastQ.split(' ')[0]}, efter fees · MSCI ACWI ${signed(fundSince('bench'), 2)} %</span></div>`;
+              `<span class="stat-sub">${FUND_YEAR} t.o.m. ${lastQ.split(' ')[0]}, efter fees · MSCI ACWI (DKK) ${signed(fundSince('bench'), 2)} %</span></div>`;
     }
     $('perfStats').innerHTML = html || '<p class="terms-meta">Vælg mindst én serie ovenfor.</p>';
   }
@@ -225,11 +230,11 @@ const FUND_MAP = { efter: 'port', foer: 'gross', msci: 'bench' };
     const wrap = $('surfaceWrap'); if (!wrap) return;
     const cell = (x) => x === null || x === undefined ? '\u2014' : signed(x, 2) + ' %';
     if (!Q.length) { wrap.innerHTML = '<p class="terms-meta">ÅTD-tal indsættes her.</p>'; return; }
-    let rows = Q.map(x => `<tr><td>${x.label}</td><td class="num">${cell(x.gross)}</td><td class="num">${cell(x.port)}</td><td class="num">${cell(x.bench)}</td></tr>`).join('');
+    let rows = Q.map(x => `<tr><td>${x.label}</td><td class="num">${cell(x.gross)}</td><td class="num">${cell(x.port)}</td><td class="num">${cell(x.bench)}</td><td class="num">${cell(x.benchUsd)}</td></tr>`).join('');
     if (Q.length > 1) {
-      rows += `<tr class="sum"><td>Siden start</td><td class="num">${cell(fundSince('gross'))}</td><td class="num">${cell(fundSince('port'))}</td><td class="num">${cell(fundSince('bench'))}</td></tr>`;
+      rows += `<tr class="sum"><td>Siden start</td><td class="num">${cell(fundSince('gross'))}</td><td class="num">${cell(fundSince('port'))}</td><td class="num">${cell(fundSince('bench'))}</td><td class="num">${cell(fundSince('benchUsd'))}</td></tr>`;
     }
-    wrap.innerHTML = `<table class="perf-table"><thead><tr><th>Periode</th><th class="num">Før fees</th><th class="num">Efter fees</th><th class="num">MSCI ACWI</th></tr></thead><tbody>${rows}</tbody></table>`;
+    wrap.innerHTML = `<table class="perf-table"><thead><tr><th>Periode</th><th class="num">Før fees</th><th class="num">Efter fees</th><th class="num">MSCI ACWI (DKK)</th><th class="num">MSCI ACWI (USD)</th></tr></thead><tbody>${rows}</tbody></table>`;
   }
 
   function fill(sel, vals, selected) {

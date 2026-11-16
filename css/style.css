@@ -438,6 +438,12 @@ body.subpage .nav {
 .perf-table td { color: var(--sc-text); }
 .perf-table .num { text-align: right; font-variant-numeric: tabular-nums; }
 .perf-table tr.sum td { border-top: 1px solid rgba(192,192,192,0.3); font-weight: 600; }
+.perf-table td.num { white-space: nowrap; }
+@media (max-width: 520px){
+  .perf-table { font-size: 0.9rem; }
+  .perf-table th, .perf-table td { padding: 0.6rem 0.28rem; }
+  .perf-table th { letter-spacing: 0.06em; font-size: 0.64rem; }
+}
 
 /* ---------- home track-record teaser (attributed) ---------- */
 .teaser { margin-top: 3rem; }

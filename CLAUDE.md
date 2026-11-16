@@ -27,20 +27,28 @@ source is missing, stop and ask him for it.
 
 - **Performance data lives in one place:** the top of `js/performance.js` (`SERIES`, `SURFACE`).
   The static figures in `index.html` and `performance.html` (teaser / no-JS fallback) must match it.
-- 2016–2025 portfolio (before/after fees): the IRR workbook
-  `Historisk_performance_-_Surface_Capital_-_IRR_beregninger opdateret 15-10-2026.xlsx` (Google Drive,
-  `Firma/investeringer/Surface Capital/`). After fees: 18,84 % p.a., index 562,08. Before fees: 22,01 %, 2025 = 24,8 %.
-  The performance fee is 20 % of the excess return over MSCI ACWI **after** the 1 % management fee, measured
+- **All series and their sources: `data/track_record_2016_2025.csv`.** Benchmarks are recalculated with
+  `tools/benchmarks_dkk.py` (raw MSCI/ECB data in `data/raw/`, kept locally, not in git), fees with `tools/bilag1.py`.
+- **Benchmark = MSCI ACWI Net Total Return in DKK** (index 892400, DKK series directly from MSCI; decided by
+  Rasmus 16 Nov 2026), the same currency as the portfolio. It is also the performance-fee hurdle. USD is shown
+  alongside for comparison only (homepage tiles, toggles on the performance page). **The same series must be
+  used on the performance page, the track record page, the deck and Bilag 1.**
+  ACWI DKK 2016–2025: 10.69, 9.04, −4.63, 29.10, 6.24, 27.44, −13.03, 18.35, 25.38, 8.03 (10,86 % p.a.).
+  ACWI USD: 7.9, 24.0, −9.4, 26.6, 16.3, 18.5, −18.4, 22.2, 17.5, 22.34 (11,73 % p.a.).
+- 2016–2025 portfolio: before fees 22,01 % (2025 = 24,8 %), Portfolio Performance. After fees (DKK hurdle):
+  18,60 % p.a., NAV 550,54, from `tools/bilag1.py --bench acwi_dkk`; DKK workbook copy
+  `Historisk_performance_-_Surface_Capital_-_IRR_beregninger DKK 2026-11-16.xlsx` (Google Drive,
+  `Firma/investeringer/Surface Capital/`). The 18,84 % / 562,08 figures (USD hurdle, original workbook
+  `… opdateret 15-10-2026.xlsx`) are superseded, and `bilag1.py --bench acwi_usd --check` still reproduces them as a regression test.
+  The performance fee is 20 % of the excess return over the benchmark **after** the 1 % management fee, measured
   in percent of opening NAV, and only charged in years with a positive return. The older 17,90 % / 519
   calculation is withdrawn. Never use it.
-- **MSCI ACWI** = Net Total Return, **USD**, index 892400 (MSCI factsheet). 2016–2025:
-  7.9, 24.0, −9.4, 26.6, 16.3, 18.5, −18.4, 22.2, 17.5, 22.34. **The same series must be used on the
-  performance page, the track record page, the deck and Bilag 1.**
-- **S&P 500 (EUR-hedged)** = BlackRock benchmark row for iShares S&P 500 EUR Hedged UCITS ETF (IE00B3ZW0K18):
-  9.6, 18.7, −7.8, 26.8, 15.1, 27.0, −21.0, 22.2, 22.5, 15.1 (corrected Nov 2026; the old 12,8 for 2025 was wrong).
-- **S&P 500 Acc (USD)** = S&P 500 Net TR, USD.
-- Fund quarters 2026 (`SURFACE.quarters`, `sinceStart`): from the NAV workbook / the investor letter.
-  The benchmark is currently MSCI ACWI USD (Rasmus's 892400 exports in `Løbende performance/`).
+- **S&P 500** = Net TR, USD; the DKK version is converted with EUR/USD at 4 pm London (backed out from MSCI's
+  USD/EUR levels) × ECB EUR/DKK, matching YCharts within 0,15 pp. Not the ECB EUR/USD fix (14:15 CET), which
+  is off by up to 1 pp. S&P 500 EUR-hedged is dropped (decision 16 Nov 2026).
+- Fund quarters 2026 (`SURFACE.quarters`, `sinceStart`): fund figures from the NAV workbook / the investor letter.
+  `bench` = MSCI ACWI DKK, `benchUsd` = MSCI ACWI USD, from `data/acwi_quarters_2026.csv`. Each new quarter:
+  re-download the MSCI data and rerun `tools/benchmarks_dkk.py --write` (add the quarter end to `Q_ENDS`).
 - Track record headline (`OFFICIAL` in `tools/build_trackrecord_data.py`): from Rasmus's Portfolio
   Performance dashboard (631,73 % cum., 22,01 % p.a., IRR 19,81 %, max DD 29,65 %). If you change `OFFICIAL`,
   either regenerate with the XML or patch `js/trackrecord-data.js` the same way.
@@ -74,8 +82,9 @@ source is missing, stop and ask him for it.
 2. Remove unused files (nothing references them): `assets/deck/Surface_Capital_Praesentation.pdf`
    (old version with an outlook email and 3,0 mio, still publicly downloadable), `assets/img/hero.jpg`, `wordmark.png`,
    `wordmark_reflection.png`. Update `README.md`, which is out of date (it describes 7 pages and old files).
-3. **Restate ALL benchmarks in DKK, including 2016–2025** (decided 16 Nov 2026).
-   **Run it step by step following `docs/RUNBOOK-dkk-benchmark.md`.** Tools: `tools/bilag1.py` (fee waterfall +
+3. ~~Restate ALL benchmarks in DKK~~ **Done on the site 16 Nov 2026** (see Data above). Remaining: Rasmus checks the
+   DKK workbook in Excel and updates the deck per `docs/deck-updates.md`. Original plan, for reference:
+   `docs/RUNBOOK-dkk-benchmark.md`. Tools: `tools/bilag1.py` (fee waterfall +
    Bilag 1, with a regression test) and `data/track_record_2016_2025.csv` (all series with sources). Summary: The portfolio returns
    are measured in DKK (Portfolio Performance), so the benchmark must be in DKK too. Today's USD figures are
    a currency mismatch. Danish funds use "MSCI ACWI Net, DKK" (e.g. BankInvest), but msci.com only offers
