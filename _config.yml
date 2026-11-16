@@ -1,0 +1,8 @@
+# GitHub Pages (Jekyll): keep internal working files off the public website.
+# They stay in the repository; only the published site excludes them.
+exclude:
+  - CLAUDE.md
+  - README.md
+  - docs/
+  - data/
+  - tools/

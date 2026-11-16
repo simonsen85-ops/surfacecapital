@@ -10,6 +10,8 @@ Owner: Rasmus Wisti Simonsen. Live at **www.surfacecapital.dk**.
 - All pages share `css/style.css`, `js/main.js`, the nav, the footer and the professional-investor gate
   (sessionStorage key `sc-investor-ack`). The gate means the site needs JavaScript.
 - Preview locally with `python -m http.server` and accept the gate before checking a page.
+- The working copy is kept outside Google Drive (a synced `.git` folder can get corrupted); GitHub is the backup and
+  history. The old `Build N` folders on Drive were removed 16 Nov 2026. Deck images (Bilag) live on Drive in `Præsentationer/Bilag/`.
 
 | File | Content |
 |---|---|
@@ -77,8 +79,8 @@ source is missing, stop and ask him for it.
 - Check pages in a browser (desktop and mobile width) before committing.
 
 ## Open items (as of 16 Nov 2026)
-1. Replace `assets/deck/Surface_Capital_Investorpraesentation.pdf` with a PDF export of the Google Slides deck
-   "Surface Capital 10 år – v2" (the master for the deck). Keep the file name.
+1. `assets/deck/Surface_Capital_Investorpraesentation.pdf` = PDF export of the Google Slides deck "Surface Capital 10 år – v2"
+   (the master). Re-export via the Drive connector (export as application/pdf) after each deck change. Keep the file name.
 2. Remove unused files (nothing references them): `assets/deck/Surface_Capital_Praesentation.pdf`
    (old version with an outlook email and 3,0 mio, still publicly downloadable), `assets/img/hero.jpg`, `wordmark.png`,
    `wordmark_reflection.png`. Update `README.md`, which is out of date (it describes 7 pages and old files).
