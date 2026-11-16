@@ -7,6 +7,9 @@
    Før fees 2025 rettet fra 23,80 til 24,80 (okt. 2026) — verificeret mod Portfolio Performance-XML.
    Efter fees omregnet okt. 2026 efter vilkårene: 1 % management fee, derefter 20 % af merafkastet
    over MSCI ACWI efter management fee (af primo-kapital), kun i år med positivt afkast. Kilde: IRR-workbook.
+   MSCI ACWI = Net Total Return i USD (index 892400, MSCI factsheet) — samme serie på performance- og trackrecord-siden.
+   S&P 500 (EUR-hedged) = S&P 500 EUR Hedged-indekset, kalenderårsafkast fra BlackRocks produktside for
+   iShares S&P 500 EUR Hedged UCITS ETF (IE00B3ZW0K18), benchmark-rækken (nov. 2026).
 
    >>> Tilføj/ret en serie nedenfor. 'on' styrer om den vises som standard.
    ===================================================================== */
@@ -22,7 +25,7 @@ const SERIES = [
   { key:'spacc', name:'S&P 500 Acc (USD)',      color:'#7FA6BD', on:false,
     r:[11.20, 21.10, -4.90, 30.70, 17.80, 28.20, -18.50, 25.70, 24.50, 17.60] },
   { key:'speh',  name:'S&P 500 (EUR-hedged)',   color:'#9DAE8E', on:false,
-    r:[11.50, 18.90, -8.10, 27.20, 14.00, 28.40, -21.80, 23.50, 23.00, 15.17] },
+    r:[9.60, 18.70, -7.80, 26.80, 15.10, 27.00, -21.00, 22.20, 22.50, 15.10] },
 ];
 
 /* Surface Capital — fondens EGEN performance, pr. kvartal (udfyld løbende).

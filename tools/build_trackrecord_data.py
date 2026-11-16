@@ -28,7 +28,8 @@ OFFICIAL = {
     "cum": 631.73, "ann": 22.01, "irr": 19.81, "maxdd": 29.65,
     "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
     "port":  [55.3, 28.8, -10.1, 38.3, 14.9, 30.0, 11.7, 14.1, 23.7, 24.8],
-    "acwi":  [16.8,  9.3,  -5.7, 30.2,  4.5, 29.1, -13.6, 18.8, 24.6,  9.2],
+    # MSCI ACWI Net Total Return (USD, index 892400) — samme serie som performance-siden.
+    "acwi":  [7.9,  24.0,  -9.4, 26.6, 16.3, 18.5, -18.4, 22.2, 17.5, 22.34],
 }
 
 CC = CurrencyConverter(fallback_on_missing_rate=True, fallback_on_wrong_date=True)

@@ -1,0 +1,17 @@
+# Forvalterens personlige track record 2016-2025 + benchmarks. Kalenderårsafkast i %.
+# portfolio_gross: Portfolio Performance (TTWROR, DKK, før fees). Kilde: Rasmus / IRR-workbook okt. 2026.
+# acwi_usd: MSCI ACWI Net Total Return, USD (index 892400, MSCI factsheet).
+# sp500_usd: S&P 500 Net Total Return, USD.
+# sp500_eurh: S&P 500 EUR Hedged index (BlackRock, benchmark-række for IE00B3ZW0K18).
+# acwi_dkk / sp500_dkk: TOMME indtil de er beregnet efter docs/RUNBOOK-dkk-benchmark.md.
+year,portfolio_gross,acwi_usd,sp500_usd,sp500_eurh,acwi_dkk,sp500_dkk
+2016,55.3,7.9,11.2,9.6,,
+2017,28.8,24.0,21.1,18.7,,
+2018,-10.1,-9.4,-4.9,-7.8,,
+2019,38.3,26.6,30.7,26.8,,
+2020,14.9,16.3,17.8,15.1,,
+2021,30.0,18.5,28.2,27.0,,
+2022,11.7,-18.4,-18.5,-21.0,,
+2023,14.1,22.2,25.7,22.2,,
+2024,23.7,17.5,24.5,22.5,,
+2025,24.8,22.34,17.6,15.1,,
